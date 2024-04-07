@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://b57scdrb27r2o"]
+
+[ext_resource type="Script" path="res://scenes/Area2D.gd" id="1_jco2m"]
+[ext_resource type="Texture2D" uid="uid://dqmxijgmyokkd" path="res://assets/white_tile.png" id="2_dynri"]
+[ext_resource type="AudioStream" uid="uid://b3nu4ofii8jgd" path="res://assets/point_scored.wav" id="3_3hcac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehdja"]
+size = Vector2(56, 184)
+
+[sub_resource type="Environment" id="Environment_6a83n"]
+background_mode = 3
+glow_enabled = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mjf7"]
+size = Vector2(24, 440)
+
+[node name="obstacle" type="Area2D"]
+script = ExtResource("1_jco2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(28, 92)
+shape = SubResource("RectangleShape2D_ehdja")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(28, 92)
+scale = Vector2(1.75, 5.75)
+texture = ExtResource("2_dynri")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6a83n")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(44, 400)
+shape = SubResource("RectangleShape2D_4mjf7")
+debug_color = Color(0.956863, 0, 0.529412, 0.419608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(44, -216)
+shape = SubResource("RectangleShape2D_4mjf7")
+
+[node name="points_scored" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3hcac")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

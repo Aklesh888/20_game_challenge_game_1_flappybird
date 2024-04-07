@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://8kn6grruy7ap"]
+
+[ext_resource type="Texture2D" uid="uid://gffmt8pj2xrr" path="res://assets/space ship.png" id="1_ygt4j"]
+[ext_resource type="Script" path="res://scenes/bird.gd" id="1_yhofg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlymj"]
+size = Vector2(91, 17)
+
+[node name="bird" type="CharacterBody2D" groups=["bird"]]
+script = ExtResource("1_yhofg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 5)
+shape = SubResource("RectangleShape2D_qlymj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(23, 14)
+rotation = 1.5734
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_ygt4j")
+flip_v = true
